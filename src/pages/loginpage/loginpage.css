@@ -1,5 +1,5 @@
-body{
-  background-image: url("carlo.jpg");
+/* body{
+  background-image: url("car.jpg");
   background-position: center;
   background-size: cover ;
 }
@@ -8,9 +8,8 @@ body{
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    /* background-color: #bdc5cc;  */
+    background-color: #bdc5cc; 
     padding: 20px;
-   
   }
   
   .login-form {
@@ -44,10 +43,10 @@ body{
   }
   
   .submit-button {
-    width: 100%;
+    width: 100%; 
     background-color: #007bff;
     border: none;
-    border-radius: 6px;
+    border-radius: 6px; 
     padding: 10px 15px;
     font-size: 1rem;
     font-weight: 500;
@@ -56,6 +55,81 @@ body{
   }
   
   .submit-button:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; 
   }
+   */
+
+   body {
+    background-image: url("car.jpg");
+    background-position: center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Ensures full height coverage */
+  }
+  
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Full width */
+    max-width: 400px; /* Limits the container's width */
+    background-color: rgba(117, 105, 105, 0.479); /* Transparent background for better visual effect */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better focus */
+  }
+  
+  .login-form {
+    width: 100%; /* Ensures the form fills the container */
+  }
+  
+  .form-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #ffffff; /* Lighter text color for contrast */
+  }
+  
+  form .form-label {
+    font-weight: 500;
+    color: #f8f9fa; /* Lighter label text color */
+  }
+  
+  form .form-control {
+    border-radius: 6px;
+    border: 1px solid #ced4da;
+    padding: 10px;
+    color: #4950575f; /* Text color inside the input */
+  }
+  
+  form .form-check-label {
+    color: #f8f9fa; /* Lighter checkbox label color */
+  }
+  
+  .submit-button {
+    width: 100%; /* Full width button */
+    background-color: #007bff; /* Primary button color */
+    border: none;
+    border-radius: 6px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #ffffff; /* White text for contrast */
+    transition: background-color 0.3s ease;
+    cursor: pointer; /* Indicates clickable button */
+  }
+  
+  .submit-button:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+  }
+  
+  
+  
+    .form-title {
+      font-size: 1.25rem; /* Slightly smaller title on mobile */
+    }
   
