@@ -59,77 +59,76 @@
   }
    */
 
-   body {
-    background-image: url("car.jpg");
-    background-position: center;
-    background-size: cover;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Ensures full height coverage */
-  }
-  
+body {
+  background-image: url("car.jpg");
+  background-position: center;
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
   .form-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%; /* Full width */
-    max-width: 400px; /* Limits the container's width */
-    background-color: rgba(117, 105, 105, 0.479); /* Transparent background for better visual effect */
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(117, 105, 105, 0.479);
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for better focus */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
-  
+
   .login-form {
-    width: 100%; /* Ensures the form fills the container */
+    width: 100%;
   }
-  
+
   .form-title {
     text-align: center;
     margin-bottom: 20px;
     font-size: 1.5rem;
-    color: #ffffff; /* Lighter text color for contrast */
+    color: #ffffff;
   }
-  
+
   form .form-label {
     font-weight: 500;
-    color: #f8f9fa; /* Lighter label text color */
+    color: #f8f9fa;
   }
-  
+
   form .form-control {
     border-radius: 6px;
     border: 1px solid #ced4da;
     padding: 10px;
-    color: #4950575f; /* Text color inside the input */
+    color: #4950575f;
   }
-  
+
   form .form-check-label {
-    color: #f8f9fa; /* Lighter checkbox label color */
+    color: #f8f9fa;
   }
-  
+
   .submit-button {
-    width: 100%; /* Full width button */
-    background-color: #007bff; /* Primary button color */
+    width: 100%;
+    background-color: #007bff;
     border: none;
     border-radius: 6px;
     padding: 10px 15px;
     font-size: 1rem;
     font-weight: 500;
-    color: #ffffff; /* White text for contrast */
+    color: #ffffff;
     transition: background-color 0.3s ease;
-    cursor: pointer; /* Indicates clickable button */
+    cursor: pointer;
   }
-  
+
   .submit-button:hover {
-    background-color: #0056b3; /* Darker shade on hover */
+    background-color: #0056b3;
   }
-  
-  
-  
-    .form-title {
-      font-size: 1.25rem; /* Slightly smaller title on mobile */
-    }
-  
+
+
+
+  .form-title {
+    font-size: 1.25rem;
+  }
+}
