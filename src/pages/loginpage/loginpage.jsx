@@ -19,29 +19,31 @@ function LoginPage() {
   }
 
   return (
+    <div className="auth">
+      <div className="form-container ">
 
-    <div className="form-container auth">
-      <Form>
-        <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" onChange={(e) => setUserCredentials((prev) => ({ ...prev, email: e.target.value }))} />
-        </Form.Group>
+        <Form>
+          <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Label>Email address</Form.Label>
+            <Form.Control type="email" placeholder="Enter email" onChange={(e) => setUserCredentials((prev) => ({ ...prev, email: e.target.value }))} />
+          </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Password" onChange={(e) => setUserCredentials((prev) => ({ ...prev, password: e.target.value }))} />
-        </Form.Group>
+          <Form.Group className="mb-3" controlId="formBasicPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" placeholder="Password" onChange={(e) => setUserCredentials((prev) => ({ ...prev, password: e.target.value }))} />
+          </Form.Group>
 
-        <Button variant="primary" type="submit" className="submit-button" onClick={handleLogin}>
-          Submit
-        </Button>
+          <Button variant="primary" type="submit" className="submit-button" onClick={handleLogin}>
+            Submit
+          </Button>
 
-        <div className="signupdetails">
-          <a href="/forgot-pass">Forgot password</a>
-          <span>|</span>
-          <Link to="/signup">SignUp</Link>
-        </div>
-      </Form>
+          <div className="signupdetails">
+            <a href="/forgot-pass">Forgot password</a>
+            <span>|</span>
+            <Link to="/signup">SignUp</Link>
+          </div>
+        </Form>
+      </div>
     </div>
   );
 }
