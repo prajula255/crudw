@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 import './registerpage.css';
 function RegisterPage() {
   return (
-    <div className="form-container1">
+    <div className="form-container1 auth">
       <h2>Register</h2>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicName">
