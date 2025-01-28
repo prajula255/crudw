@@ -40,6 +40,16 @@ function ProductDetails() {
                 </Carousel>
             </div>
 
+            {/* naming section */}
+            <div className='product-name'>
+                <div className='product-namecard'>
+                    <h2>Maruti Suzuki Swift(2020)</h2>
+                    <h6>Petrol</h6>
+                    <h6>100132km</h6>
+                    <h6>Manual</h6>
+                </div>
+            </div>
+
             {/* overview section */}
             <div className='product-overview'>
                 <div className='product-overview-card'>
@@ -54,8 +64,8 @@ function ProductDetails() {
             <div className="product-details-container">
                 <div className="product-details-card">
                     <div className="product-details-info">
-                        <h2>{product.name}</h2>
-                        <p className="product-price">{product.price}</p>
+                        {/* <h2>{product.name}</h2>
+                        <p className="product-price">{product.price}</p> */}
                         <p>
                             <strong>Year:</strong> {product.year}
                         </p>
