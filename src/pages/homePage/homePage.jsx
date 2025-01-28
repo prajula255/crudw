@@ -37,7 +37,7 @@ function HomePage() {
             <div className="featured-container position-relative">
               <Card.Img
                 variant="top"
-                src="/public/Swift.jpg"
+                src="/Swift.jpg"
                 alt="Card image"
                 className="p-2 position-absolute"
               />
@@ -63,7 +63,7 @@ function HomePage() {
       ) : (
         <div className="home-container">
           <Card className="home-card" onClick={handleCardClick} style={{ cursor: 'pointer' }}>
-            <Card.Img variant="top" src="/public/Swift.jpg" alt="Card image" />
+            <Card.Img variant="top" src="/Swift.jpg" alt="Card image" />
             <Card.Body>
               <Card.Text>
                 <h5>₹ 4,50,000</h5>
