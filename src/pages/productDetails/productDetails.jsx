@@ -1,8 +1,8 @@
 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import FooterEx from '../components/footer';
-import NavEx from '../components/navbar';
+import FooterEx from '../../components/footer';
+import NavEx from '../../components/navbar';
 import { Carousel } from 'react-bootstrap';
 import './productDetails.css';
 
