@@ -40,6 +40,16 @@ function ProductDetails() {
                 </Carousel>
             </div>
 
+            {/* overview section */}
+            <div className='product-overview'>
+                <div className='product-overview-card'>
+                    <h3>Overview</h3>
+                    <h6>1st owner</h6>
+                    <h6>Location</h6>
+                    <h6>Posting Date</h6>
+                </div>
+            </div>
+
             {/* Product Details Section */}
             <div className="product-details-container">
                 <div className="product-details-card">
