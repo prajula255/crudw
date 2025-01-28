@@ -21,26 +21,21 @@ function NavEx() {
                         <Form className="d-flex">
                             <Form.Control
                                 type="search"
-                                placeholder="Search"
+                                placeholder="Location"
                                 className="me-2"
                                 aria-label="Search"
                             />
-                            <NavDropdown title="Location" id="navbarScrollingDropdown">
+                            <NavDropdown title="English" id="navbarScrollingDropdown">
 
-                                <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
-                                <NavDropdown.Item href="#action4">
-                                    Another action
-                                </NavDropdown.Item>
+                                <NavDropdown.Item href="#action3">English</NavDropdown.Item>
                                 <NavDropdown.Divider />
-                                <NavDropdown.Item href="#action5">
-                                    Something else here
-                                </NavDropdown.Item>
+
+                                <NavDropdown.Item href="#action4">
+                                    Hindi                                </NavDropdown.Item>
+
                             </NavDropdown>
                         </Form>
                     </Nav>
-
-
-
 
                     <Form className="d-flex">
                         <Form.Control
