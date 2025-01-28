@@ -81,6 +81,13 @@ function ProductDetails() {
                 </div>
             </div>
 
+            {/* price section */}
+            <div className='price-container'>
+                <div className='price-card'>
+                    <p className="product-price">{product.price}</p>
+                    <button className="offer-button">Make Offers</button>
+                </div>
+            </div>
             <FooterEx />
         </>
     );
