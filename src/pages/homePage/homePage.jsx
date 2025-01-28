@@ -11,6 +11,12 @@ function HomePage() {
   const [isFeatured, setIsFeatured] = useState(true);
   const navigate = useNavigate();
 
+  React.useEffect(() => {
+      if (!location.state) {
+          navigate('/');
+      }
+  }, [location.state, navigate]);
+  
   // Function to handle card click
   const handleCardClick = () => {
     navigate('/product-details', {
