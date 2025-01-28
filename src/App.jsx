@@ -4,7 +4,7 @@ import LoginPage from './pages/loginpage/loginpage'
 import RegisterPage from "./pages/registerpage/registerpage"
 import HomePage from "./pages/homePage/homePage";
 import ProtectedRoute from "./provider/protectedRoute";
-import ProductDetails from "./pages/ProductDetails";
+import ProductDetails from "./pages/productDetails/productDetails";
 function App() {
   return (
     <>
