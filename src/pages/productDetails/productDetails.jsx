@@ -44,9 +44,11 @@ function ProductDetails() {
             <div className='product-name'>
                 <div className='product-namecard'>
                     <h2>Maruti Suzuki Swift(2020)</h2>
-                    <h6><i class="fa-solid fa-gas-pump" />Petrol</h6>
-                    <h6><i class="fa-solid fa-gauge"></i>100132km</h6>
-                    <h6><i class="fa-solid fa-sitemap"></i>Manual</h6>
+                    <div className='d-flex flex-row justify-content-between'>
+                        <h6><i class="fa-solid fa-gas-pump" />Petrol</h6>
+                        <h6><i class="fa-solid fa-gauge"></i>100132km</h6>
+                        <h6><i class="fa-solid fa-sitemap"></i>Manual</h6>
+                    </div>
                 </div>
             </div>
 
@@ -54,9 +56,11 @@ function ProductDetails() {
             <div className='product-overview'>
                 <div className='product-overview-card'>
                     <h3>Overview</h3>
-                    <h6><i class="fa-solid fa-user" />1st owner</h6>
-                    <h6><i class="fa-solid fa-location-dot" />Location</h6>
-                    <h6><i class="fa-solid fa-calendar-days" />Posting Date</h6>
+                    <div className='d-flex flex-row justify-content-between'>
+                        <h6><i class="fa-solid fa-user" />1st owner</h6>
+                        <h6><i class="fa-solid fa-location-dot" />Location</h6>
+                        <h6><i class="fa-solid fa-calendar-days" />Posting Date</h6>
+                    </div>
                 </div>
             </div>
 
