@@ -70,7 +70,7 @@ function ProductDetails() {
                 {/* overview section */}
                 <div className='cards-container'>
                     <div className='product-overview'>
-                        <h3>Overview</h3>
+                        <h3 className='border-bottom border-2' >Overview</h3>
                         <div className='d-flex flex-row justify-content-between'>
                             <h6><i className="fa-solid fa-user" /> 1st owner</h6>
                             <h6><i className="fa-solid fa-location-dot" /> Location</h6>
