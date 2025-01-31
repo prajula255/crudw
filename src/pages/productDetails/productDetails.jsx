@@ -50,7 +50,7 @@ function ProductDetails() {
                 <div className='product-row'>
                     <div className='product-name'>
                         <div className='product-namecard'>
-                            <h2>Maruti Suzuki Swift(2020)</h2>
+                            <h2 className='border-bottom border-2'>Maruti Suzuki Swift(2020)</h2>
                             <div className='d-flex flex-row justify-content-between'>
                                 <h6><i class="fa-solid fa-gas-pump" />Petrol</h6>
                                 <h6><i class="fa-solid fa-gauge"></i>100132km</h6>
@@ -70,7 +70,7 @@ function ProductDetails() {
                 {/* overview section */}
                 <div className='cards-container'>
                     <div className='product-overview'>
-                        <h3 className='border-bottom border-2' >Overview</h3>
+                        <h2 className='border-bottom border-2' >Overview</h2>
                         <div className='d-flex flex-row justify-content-between'>
                             <h6><i className="fa-solid fa-user" /> 1st owner</h6>
                             <h6><i className="fa-solid fa-location-dot" /> Location</h6>
@@ -84,6 +84,7 @@ function ProductDetails() {
                             <button className="contact-seller-button">
                                 <h6>Chat with Seller</h6>
                             </button>
+                            <i class="fa-solid fa-phone"></i>
                         </div>
                     </div>
                 </div>
@@ -92,7 +93,7 @@ function ProductDetails() {
                 <div className='productdesc-row'>
                     <div className="product-details-card">
                         <div className="product-details-info">
-                            <h3>Description</h3>
+                            <h2 className='border-bottom border-2'>Description</h2>
                             <p>
                                 Variant: VXI AMT<br />
                                 ADDITIONAL VEHICLE INFORMATION:<br />
