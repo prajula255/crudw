@@ -1,5 +1,5 @@
 .auth {
-  background-image: url("/public/car.jpg");
+  background-image: url("/carbg.jpeg") !important;
   background-position: center;
   background-size: cover;
   margin: 0;
