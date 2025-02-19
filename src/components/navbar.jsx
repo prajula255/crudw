@@ -26,7 +26,6 @@ function NavEx() {
                                 aria-label="Search"
                             />
                             <Button variant="outline-success">Search</Button>
-
                         </Form>
 
                         <NavDropdown title="English" id="navbarScrollingDropdown">

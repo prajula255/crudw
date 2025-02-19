@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     value: 0,
-    isLoggedIn: false
+    isLoggedIn: false,
+    
 }
 
 export const counterSlice = createSlice({
@@ -22,7 +23,8 @@ export const counterSlice = createSlice({
         },
         updateIsLoggedIn: (state, action) => {
             state.isLoggedIn = action.payload
-        }
+        },
+        
     },
 })
 
