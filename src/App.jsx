@@ -6,7 +6,7 @@ import HomePage from "./pages/homePage/homePage";
 import ProtectedRoute from "./provider/protectedRoute";
 import ProductDetails from "./pages/productDetails/productDetails";
 import ProfilePage from "./pages/profilepage";
-import AdsDetails from "./pages/adsDetails";
+import AdDetailsPage from "./pages/adsDetails";
 function App() {
   return (
     <>
@@ -17,7 +17,7 @@ function App() {
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
           <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/ads" element={<ProfilePage />} />
-          <Route path="/addetails" element={<AdsDetails/>}/>
+          <Route path="/addetails" element={<AdDetailsPage />} />
         </Routes>
       </Router>
     </>
