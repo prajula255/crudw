@@ -6,7 +6,7 @@ import HomePage from "./pages/homePage/homePage";
 import ProtectedRoute from "./provider/protectedRoute";
 import ProductDetails from "./pages/productDetails/productDetails";
 import AdDetailsPage from "./pages/adsDetails";
-import ProfilePage from "../pages/profilePage";
+import ProfilePage from "./pages/profilepage";
 function App() {
   return (
     <>
