@@ -83,8 +83,22 @@ function AdsDetails() {
                             <div className='p-4 border-bottom border-1 border-secondary border-opacity-50'>
                                 <h4>    Upload Images</h4>
                                 <p>Add photo</p>
-                                <input type={"file"} multiple accept="image/*" />
+                                <input type="file" multiple accept="image/*" />
                             </div>
+
+                            <div>
+                                <p className="mb-0 mt-2">Confirm Location*</p>
+                                <select className='form-select'>
+                                    <option>Kerala</option>
+                                    <option>TamilNadu</option>
+                                    <option>Karnataka</option>
+                                    <option>AndhraPradesh</option>
+                                    <option>Bihar</option>
+                                    <option>Jammu&Kashmir</option>
+
+                                </select>
+                            </div>
+
                             <div className="text-center mt-3">
                                 <button type="submit" className="btn btn-primary px-4 py-2">Post now</button>
                             </div>
@@ -100,6 +114,9 @@ export default AdsDetails;
 
 
 
+
+
+// store the given details of ads using usestate
 
 
 
