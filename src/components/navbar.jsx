@@ -76,7 +76,7 @@ function NavEx() {
                         </NavDropdown>
                     </Nav>
                     <Nav className='ms-auto'>
-                        <Nav.Link href="#action1">Login</Nav.Link>
+                        <Nav.Link href="#action1">Sell</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
