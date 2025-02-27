@@ -7,6 +7,7 @@ import ProtectedRoute from "./provider/protectedRoute";
 import ProductDetails from "./pages/productDetails/productDetails";
 import AdDetailsPage from "./pages/adsDetails";
 import ProfilePage from "./pages/profilePages";
+import EditProfile from "./pages/editProfile";
 function App() {
   return (
     <>
@@ -18,6 +19,8 @@ function App() {
           <Route path="/product-details" element={<ProductDetails />} />
           <Route path="/ads" element={< ProfilePage />} />
           <Route path="/addetails" element={<AdDetailsPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/edit" element={<EditProfile />} />
         </Routes>
       </Router>
     </>

@@ -67,7 +67,7 @@ function NavEx() {
 
                     <Nav className="ms-auto">
                         <NavDropdown title="Profile" id="profileDropdown">
-                            <NavDropdown.Item href="#accounts" >View and Edit profile</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/profile" >View and Edit profile</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/ads">Ads</NavDropdown.Item>
                             <NavDropdown.Item href="#settings">Settings</NavDropdown.Item>
                             <NavDropdown.Item href="#help">Help</NavDropdown.Item>
