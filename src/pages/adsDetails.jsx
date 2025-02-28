@@ -1,12 +1,13 @@
 
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { data, useNavigate } from "react-router-dom";
+import { adsAPI } from "../../api_services/allAPIs/adsAPI";
 
 function AdsDetails() {
     const navigate = useNavigate();
 
     const [adDetails, setAdDetails] = useState({
-        brand: "Maruthi Suzuki",
+        brand: "",
         year: "",
         fuel: "",
         transmission: "",
@@ -18,20 +19,122 @@ function AdsDetails() {
         location: "Kerala",
     });
 
-    const handleChange = (e) => {
-        setAdDetails({ ...adDetails, [e.target.name]: e.target.value });
+    const handleBrandChange = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            brand: e.target.value
+        }));
     };
+
+    const handleYearChange = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            year: e.target.value
+        }));
+    };
+
+    const handleFuel = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            fuel: e.target.value
+        }))
+    }
+
+    const handleTransmission = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            transmission: e.target.value
+        }))
+    }
+
+    const handleDistance = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            kmDriven: e.target.value
+        }))
+    }
+
+    const handleOwner = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            owners: e.target.value
+        }))
+    }
+
+    const handleAmt = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            price: e.target.value
+        }))
+    }
+
+    const handleDesc = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            description: e.target.value
+        }))
+    }
 
     const handleFileChange = (e) => {
-        setAdDetails({ ...adDetails, images: Array.from(e.target.files) });
+        const files = Array.from(e.target.files)
+        const newImages = files.map((file) => ({
+            file,
+            url: URL.createObjectURL(file)
+        }))
+        setAdDetails((prev) => ({
+            ...prev,
+            images: newImages
+        }))
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log("Ad Details Submitted:", adDetails);
-        alert("Ad posted successfully!");
-        navigate("/profile");
-    };
+    const handleRemoveImage = (index) => {
+        const newArray = adDetails.images.filter((_, i) => i !== index);
+        setAdDetails((prev) => ({
+            ...prev,
+            images: newArray
+        }))
+    }
+
+    const handleFileUpload = async (event) => {
+        event.preventDefault()
+        const requestBody = new FormData()
+        requestBody.append("brand", adDetails.brand)
+        requestBody.append("year", adDetails.year)
+        requestBody.append("fuel", adDetails.fuel)
+        requestBody.append("transmission", adDetails.transmission)
+        requestBody.append("kmdriven", adDetails.kmDriven)
+        requestBody.append("no of owners", adDetails.owners)
+        requestBody.append("price", adDetails.price)
+        requestBody.append("description", adDetails.description)
+        requestBody.append("images", adDetails.images)
+        requestBody.append("location", adDetails.location)
+        console.log(typeof (requestBody));
+        console.log(...requestBody);
+
+        const userCredentials = JSON.parse(localStorage.getItem('userCredentials'))
+
+        const reqHeader = {
+            "Content-Type": "multipart/form-data",
+            "Authorization": `${userCredentials.token}`
+
+        }
+
+        try {
+            const result = await adsAPI(requestBody, reqHeader)
+            console.log("result : ", result);
+
+        } catch (error) {
+            return error
+        }
+    }
+
+    const handleLoc = (e) => {
+        setAdDetails((prev) => ({
+            ...prev,
+            location: e.target.value
+        }))
+    }
+
 
     return (
         <>
@@ -47,23 +150,24 @@ function AdsDetails() {
                 </div>
 
                 <div className='d-flex justify-content-center align-items-center'>
-                    <form className='border border-1 border-secondary border-opacity-50 w-50' style={{ minHeight: "30rem" }} onSubmit={handleSubmit}>
+                    <form className='border border-1 border-secondary border-opacity-50 w-50' style={{ minHeight: "30rem" }} onSubmit={handleFileUpload}>
                         <div className='d-flex flex-column gap-3 p-4 border-bottom border-1 border-secondary border-opacity-50'>
                             <h4>Include Details</h4>
 
                             <div>
                                 <p className='mb-0 mt-2'>Brand*</p>
-                                <select name="brand" className='form-select' value={adDetails.brand} onChange={handleChange}>
-                                    <option>Maruthi Suzuki</option>
-                                    <option>Hyundai</option>
-                                    <option>Tata</option>
-                                    <option>Mahindra</option>
+                                <select name="brand" onChange={(e) => handleBrandChange(e)} defaultValue="default" className='form-select' >
+                                    <option value="default" disabled>Select brand</option>
+                                    <option value="maruthi suzuki">Maruthi Suzuki</option>
+                                    <option value="hyundai">Hyundai</option>
+                                    <option value="tata">Tata</option>
+                                    <option value="mahindra">Mahindra</option>
                                 </select>
                             </div>
 
                             <div>
                                 <p className='mb-0 mt-2'>Year*</p>
-                                <input type='date' name="year" className='form-control' value={adDetails.year} onChange={handleChange} />
+                                <input type='date' name="year" className='form-control' value={adDetails.year} onChange={handleYearChange} />
                             </div>
 
                             <div>
@@ -71,7 +175,7 @@ function AdsDetails() {
                                 <div className='d-flex flex-row gap-3'>
                                     {['CNG', 'Diesel', 'Petrol', 'Electric'].map(fuelType => (
                                         <label key={fuelType}>
-                                            <input type="radio" name="fuel" value={fuelType} onChange={handleChange} checked={adDetails.fuel === fuelType} /> {fuelType}
+                                            <input type="radio" name="fuel" value={fuelType} onChange={handleFuel} checked={adDetails.fuel === fuelType} /> {fuelType}
                                         </label>
                                     ))}
                                 </div>
@@ -82,7 +186,7 @@ function AdsDetails() {
                                 <div className="d-flex flex-row gap-3">
                                     {['Automatic', 'Manual'].map(transmissionType => (
                                         <label key={transmissionType}>
-                                            <input type='radio' name='transmission' value={transmissionType} onChange={handleChange} checked={adDetails.transmission === transmissionType} /> {transmissionType}
+                                            <input type='radio' name='transmission' value={transmissionType} onChange={handleTransmission} checked={adDetails.transmission === transmissionType} /> {transmissionType}
                                         </label>
                                     ))}
                                 </div>
@@ -90,7 +194,7 @@ function AdsDetails() {
 
                             <div>
                                 <p className="mb-0 mt-2">Km driven*</p>
-                                <input type="number" name="kmDriven" min="0" className="form-control" value={adDetails.kmDriven} onChange={handleChange} />
+                                <input type="number" name="kmDriven" min="0" className="form-control" value={adDetails.kmDriven} onChange={handleDistance} />
                             </div>
 
                             <div>
@@ -98,7 +202,7 @@ function AdsDetails() {
                                 <div className='d-flex flex-row gap-3'>
                                     {["1st", "2nd", "3rd", "4th", "4+"].map(ownerType => (
                                         <label key={ownerType}>
-                                            <input type='radio' name='owners' value={ownerType} onChange={handleChange} checked={adDetails.owners === ownerType} /> {ownerType}
+                                            <input type='radio' name='owners' value={ownerType} onChange={handleOwner} checked={adDetails.owners === ownerType} /> {ownerType}
                                         </label>
                                     ))}
                                 </div>
@@ -106,22 +210,32 @@ function AdsDetails() {
 
                             <div>
                                 <p className="mb-0 mt-2">Price*</p>
-                                <input type="text" name="price" className="form-control" value={adDetails.price} onChange={handleChange} />
+                                <input type="text" name="price" className="form-control" value={adDetails.price} onChange={handleAmt} />
                             </div>
 
                             <div>
                                 <p className="mb-0 mt-2">Description*</p>
-                                <textarea name="description" className="form-control" value={adDetails.description} onChange={handleChange}></textarea>
+                                <textarea name="description" className="form-control" value={adDetails.description} onChange={handleDesc}></textarea>
                             </div>
 
                             <div className='p-4 border-bottom border-1 border-secondary border-opacity-50'>
                                 <h4>Upload Images</h4>
                                 <input type="file" multiple accept="image/*" onChange={handleFileChange} />
+                                <div className="d-flex flex-row flex-wrap gap-1">
+                                    {
+                                        adDetails.images.map((item, index) => (
+                                            <div key={index + "image"} style={{ height: "100px", width: "100px", position: "relative" }}>
+                                                <img src={item.url} alt="img" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
+                                                <span role="button" className="position-absolute p-1 bg-danger top-0 end-0" onClick={() => handleRemoveImage(index)}>x</span>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
                             </div>
 
                             <div>
                                 <p className="mb-0 mt-2">Confirm Location*</p>
-                                <select name="location" className='form-select' value={adDetails.location} onChange={handleChange}>
+                                <select name="location" className='form-select' value={adDetails.location} onChange={handleLoc}>
                                     <option>Kerala</option>
                                     <option>TamilNadu</option>
                                     <option>Karnataka</option>
