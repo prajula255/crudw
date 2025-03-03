@@ -1,6 +1,6 @@
 
-import React, { useEffect, useState } from "react";
-import { data, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { adsAPI } from "../../api_services/allAPIs/adsAPI";
 
 function AdsDetails() {
@@ -97,6 +97,10 @@ function AdsDetails() {
 
     const handleFileUpload = async (event) => {
         event.preventDefault()
+        if (!adDetails.brand || !adDetails.year || !adDetails.fuel || !adDetails.transmission || !adDetails.kmDriven || !adDetails.owners || !adDetails.price || !adDetails.description || !adDetails.images.length===0 || !adDetails.location) {
+            alert("Please fill all required fields")
+            return
+        }
         const requestBody = new FormData()
         requestBody.append("brand", adDetails.brand)
         requestBody.append("year", adDetails.year)
