@@ -16,6 +16,7 @@ function LoginPage() {
     if (result.status === 201) {
       alert(result.data.message)
       localStorage.setItem('userCredentials', JSON.stringify({
+        user_id:result.data.userDetails.user_id,
         name: result.data.userDetails.name,
         email: result.data.userDetails.email,
         password: result.data.userDetails.password,

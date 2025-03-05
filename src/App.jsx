@@ -16,11 +16,11 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/signup" element={<RegisterPage />} />
           <Route path="/home" element={<ProtectedRoute><HomePage /></ProtectedRoute>} />
-          <Route path="/product-details" element={<ProductDetails />} />
-          <Route path="/ads" element={< ProfilePage />} />
-          <Route path="/addetails" element={<AdDetailsPage />} />
-          <Route path="/profile" element={<ProfilePage />} />
-          <Route path="/edit" element={<EditProfile />} />
+          <Route path="/product-details" element={<ProtectedRoute><ProductDetails /></ProtectedRoute>} />
+          <Route path="/ads" element={<ProtectedRoute>< ProfilePage /></ProtectedRoute>} />
+          <Route path="/addetails" element={<ProtectedRoute><AdDetailsPage /></ProtectedRoute>} />
+          <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
+          <Route path="/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
         </Routes>
       </Router>
     </>

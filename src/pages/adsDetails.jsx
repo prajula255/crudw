@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { adsAPI } from "../../api_services/allAPIs/adsAPI";
 
@@ -76,14 +76,19 @@ function AdsDetails() {
     }
 
     const handleFileChange = (e) => {
+        
         const files = Array.from(e.target.files)
+        if (!files) {
+            alert('no file selected')
+            return
+        }
         const newImages = files.map((file) => ({
             file,
             url: URL.createObjectURL(file)
         }))
         setAdDetails((prev) => ({
             ...prev,
-            images: newImages
+            images: [...prev.images, ...newImages]
         }))
     };
 
@@ -97,25 +102,25 @@ function AdsDetails() {
 
     const handleFileUpload = async (event) => {
         event.preventDefault()
+        const userCredentials = JSON.parse(localStorage.getItem('userCredentials'))
         if (!adDetails.brand || !adDetails.year || !adDetails.fuel || !adDetails.transmission || !adDetails.kmDriven || !adDetails.owners || !adDetails.price || !adDetails.description || !adDetails.images.length===0 || !adDetails.location) {
             alert("Please fill all required fields")
             return
         }
         const requestBody = new FormData()
+        requestBody.append("user_id",userCredentials.user_id)
         requestBody.append("brand", adDetails.brand)
         requestBody.append("year", adDetails.year)
         requestBody.append("fuel", adDetails.fuel)
         requestBody.append("transmission", adDetails.transmission)
         requestBody.append("kmdriven", adDetails.kmDriven)
-        requestBody.append("no of owners", adDetails.owners)
+        requestBody.append("no_of_owners", adDetails.owners)
         requestBody.append("price", adDetails.price)
         requestBody.append("description", adDetails.description)
-        requestBody.append("images", adDetails.images)
+        adDetails.images.forEach((image) => {
+            requestBody.append(`images`, image.file);
+        });
         requestBody.append("location", adDetails.location)
-        console.log(typeof (requestBody));
-        console.log(...requestBody);
-
-        const userCredentials = JSON.parse(localStorage.getItem('userCredentials'))
 
         const reqHeader = {
             "Content-Type": "multipart/form-data",
@@ -131,6 +136,7 @@ function AdsDetails() {
             return error
         }
     }
+    
 
     const handleLoc = (e) => {
         setAdDetails((prev) => ({
