@@ -40,7 +40,7 @@ function MyAds() {
                                     <h5 className="card-title">{ad.brand} - {ad.year}</h5>
                                     <p className="card-text">Price: ₹{ad.price}</p>
                                     <p className="card-text">Location: {ad.location}</p>
-                                    <button className="btn btn-primary" onClick={() => navigate(`/ad-details/${ad.id}`)}>View Details</button>
+                                    <button className="btn btn-primary" onClick={() => navigate(`/myads/${ad.id}`)}>View Details</button>
                                 </div>
                             </div>
                         </div>
