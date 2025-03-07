@@ -8,6 +8,7 @@ import ProductDetails from "./pages/productDetails/productDetails";
 import AdDetailsPage from "./pages/adsDetails";
 import ProfilePage from "./pages/profilePages";
 import EditProfile from "./pages/editProfile";
+import MyAds from "./pages/postedAds";
 function App() {
   return (
     <>
@@ -21,6 +22,8 @@ function App() {
           <Route path="/addetails" element={<ProtectedRoute><AdDetailsPage /></ProtectedRoute>} />
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
+          <Route path="/myads" element={<ProtectedRoute><MyAds /></ProtectedRoute>} />
+
         </Routes>
       </Router>
     </>

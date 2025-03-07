@@ -1,5 +1,5 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { adsAPI } from "../../api_services/allAPIs/adsAPI";
 
@@ -76,7 +76,7 @@ function AdsDetails() {
     }
 
     const handleFileChange = (e) => {
-        
+
         const files = Array.from(e.target.files)
         if (!files) {
             alert('no file selected')
@@ -101,42 +101,52 @@ function AdsDetails() {
     }
 
     const handleFileUpload = async (event) => {
-        event.preventDefault()
-        const userCredentials = JSON.parse(localStorage.getItem('userCredentials'))
-        if (!adDetails.brand || !adDetails.year || !adDetails.fuel || !adDetails.transmission || !adDetails.kmDriven || !adDetails.owners || !adDetails.price || !adDetails.description || !adDetails.images.length===0 || !adDetails.location) {
-            alert("Please fill all required fields")
-            return
+        event.preventDefault();
+        const userCredentials = JSON.parse(localStorage.getItem('userCredentials'));
+
+        if (!adDetails.brand || !adDetails.year || !adDetails.fuel || !adDetails.transmission || !adDetails.kmDriven || !adDetails.owners || !adDetails.price || !adDetails.description || adDetails.images.length === 0 || !adDetails.location) {
+            alert("Please fill all required fields");
+            return;
         }
-        const requestBody = new FormData()
-        requestBody.append("user_id",userCredentials.user_id)
-        requestBody.append("brand", adDetails.brand)
-        requestBody.append("year", adDetails.year)
-        requestBody.append("fuel", adDetails.fuel)
-        requestBody.append("transmission", adDetails.transmission)
-        requestBody.append("kmdriven", adDetails.kmDriven)
-        requestBody.append("no_of_owners", adDetails.owners)
-        requestBody.append("price", adDetails.price)
-        requestBody.append("description", adDetails.description)
+
+        const requestBody = new FormData();
+        requestBody.append("user_id", userCredentials.user_id);
+        requestBody.append("brand", adDetails.brand);
+        requestBody.append("year", adDetails.year);
+        requestBody.append("fuel", adDetails.fuel);
+        requestBody.append("transmission", adDetails.transmission);
+        requestBody.append("kmdriven", adDetails.kmDriven);
+        requestBody.append("no_of_owners", adDetails.owners);
+        requestBody.append("price", adDetails.price);
+        requestBody.append("description", adDetails.description);
+
         adDetails.images.forEach((image) => {
-            requestBody.append(`images`, image.file);
+            requestBody.append("images", image.file);
         });
-        requestBody.append("location", adDetails.location)
+
+        requestBody.append("location", adDetails.location);
 
         const reqHeader = {
             "Content-Type": "multipart/form-data",
             "Authorization": `${userCredentials.token}`
-
-        }
+        };
 
         try {
-            const result = await adsAPI(requestBody, reqHeader)
-            console.log("result : ", result);
+            const result = await adsAPI(requestBody, reqHeader);
+            console.log("result: ", result);
+
+            // Show success message
+            alert("Ad posted successfully!");
+
+            // Optionally, navigate to another page after successful submission
+            navigate("/myads"); // Change this to the route you want
 
         } catch (error) {
-            return error
+            console.error("Error posting ad:", error);
+            alert("Failed to post ad. Please try again.");
         }
-    }
-    
+    };
+
 
     const handleLoc = (e) => {
         setAdDetails((prev) => ({
