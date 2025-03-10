@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { adsAPI } from "../../api_services/allAPIs/adsAPI"; // Import API service
+import axios from "axios";
+import { baseURL } from "../../api_services/baseURL";
 
 function MyAds() {
     const navigate = useNavigate();
@@ -18,12 +20,16 @@ function MyAds() {
             };
 
             // API Call to Fetch User-Specific Ads
-            const response = await adsAPI.getUserAds(userCredentials.user_id, reqHeader);
+            const response = await axios.get(`${baseURL}/adFetch/${userCredentials.user_id}`)
             setAds(response.data); // Store ads in state
         } catch (error) {
             console.error("Error fetching ads:", error);
         }
     };
+    useEffect(() => {
+        console.log(ads);
+
+    }, [ads])
 
     return (
         <div className="container mt-4">
