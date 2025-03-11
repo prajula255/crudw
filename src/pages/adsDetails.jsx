@@ -135,16 +135,16 @@ function AdsDetails() {
             const result = await adsAPI(requestBody, reqHeader);
             console.log("result: ", result);
 
-            // Show success message
             alert("Ad posted successfully!");
 
-            // Optionally, navigate to another page after successful submission
-            navigate("/myads"); // Change this to the route you want
+
+            navigate("/myads");
 
         } catch (error) {
             console.error("Error posting ad:", error);
             alert("Failed to post ad. Please try again.");
         }
+
     };
 
 
