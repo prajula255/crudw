@@ -2,37 +2,23 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import FooterEx from "../components/footer";
 import NavEx from "../components/navbar";
+import axios from "axios";
+import { baseURL } from "../../api_services/baseURL";
 
 function ProfilePage() {
     const navigate = useNavigate();
-    const fileInputRef = useRef(null); // Create a ref for the file input
-
-    const [name, setName] = useState(localStorage.getItem("name") || "Prajula K P");
-    const [email, setEmail] = useState(localStorage.getItem("email") || "prajula123@gmail.com");
-    const [phone, setPhone] = useState(localStorage.getItem("phone") || "1234567891");
-    const [profileDP, setProfileDP] = useState(localStorage.getItem("profileDP") || null);
+    const [userDetails, setUserDetails] = useState({})
+    const userCredentials = JSON.parse(localStorage.getItem("userCredentials"))
 
     useEffect(() => {
-        setName(localStorage.getItem("name") || "Prajula K P");
-        setEmail(localStorage.getItem("email") || "prajula123@gmail.com");
-        setPhone(localStorage.getItem("phone") || "1234567891");
-    }, []);
-
-
-    const handleProfile = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const imageUrl = URL.createObjectURL(file);
-            setProfileDP(imageUrl);
-            localStorage.setItem("profileDP", imageUrl);
+        const fetchUser = async () => {
+            const response = await axios.get(`${baseURL}/fetchUser/${userCredentials.user_id}`)
+            setUserDetails(response.data)
         }
-    };
+        fetchUser();
+    }, [userCredentials]);
 
-    const handleClick = () => {
-        fileInputRef.current.click();
-    };
-
-    const registrationDate = "21 february 2025"
+    const date = new Date(userDetails.createdAt).toLocaleDateString("en-GB");
     return (
         <>
             <NavEx />
@@ -43,32 +29,30 @@ function ProfilePage() {
                             <h2 className="fw-bold">My Profile</h2>
                             <div className="d-flex align-items-center mt-3">
                                 <div
-                                    className="bg-secondary p-4 rounded d-flex align-items-center justify-content-center"
-                                    style={{ width: "80px", height: "80px", cursor: 'pointer' }}
-                                    onClick={handleClick}
+                                    className="bg-secondary p-4 rounded-circle d-flex align-items-center justify-content-center"
+                                    style={{ width: "80px", height: "80px" }}
                                 >
-                                    {profileDP ? (
-                                        <img
-                                            src={profileDP}
-                                            alt="Profile"
-                                            style={{ width: "80px", height: "80px", borderRadius: "50%" }}
-                                        />
-                                    ) : (
-                                        <span className="text-white fw-bold">DP</span>
-                                    )}
+                                    {
+                                        userDetails?.profileImg?.length > 0 ?
+                                            (
+                                                <img
+                                                    src={`${baseURL}${userDetails.profileImg[0]}`}
+                                                    alt="Profileimg"
+                                                    style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                                                />
+                                            )
+                                            :
+                                            (
+                                                <span className="text-white fw-bold">DP</span>
+                                            )
+                                    }
                                 </div>
-                                <input
-                                    type="file"
-                                    ref={fileInputRef}
-                                    style={{ display: 'none' }}
-                                    onChange={handleProfile}
-                                    accept="image/*"
-                                />
+
                             </div>
-                            <p className="fw-semibold mt-3">{name}</p>
-                            <p className="fw-light text-muted">{email}</p>
-                            <p className="fw-light text-muted">{phone}</p>
-                            <p className="text-muted">Member since <span className="fw-light">{registrationDate}</span></p>
+                            <p className="fw-semibold mt-3">{userDetails.name}</p>
+                            <p className="fw-light text-muted">{userDetails.email}</p>
+                            <p className="fw-light text-muted">{userDetails.phone}</p>
+                            <p className="text-muted">Member since <span className="fw-light">{date}</span></p>
                             <button
                                 className="btn btn-outline-secondary w-100 mt-3"
                                 onClick={() => navigate("/edit")}

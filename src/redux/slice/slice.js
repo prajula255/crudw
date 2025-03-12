@@ -3,7 +3,6 @@ import { createSlice } from '@reduxjs/toolkit'
 const initialState = {
     value: 0,
     isLoggedIn: false,
-    
 }
 
 export const counterSlice = createSlice({
@@ -24,10 +23,9 @@ export const counterSlice = createSlice({
         updateIsLoggedIn: (state, action) => {
             state.isLoggedIn = action.payload
         },
-        
     },
 })
 
-export const { increment, decrement, incrementByAmount ,updateIsLoggedIn} = counterSlice.actions
+export const { increment, decrement, incrementByAmount, updateIsLoggedIn } = counterSlice.actions
 
 export default counterSlice.reducer
