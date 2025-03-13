@@ -9,6 +9,7 @@ import AdDetailsPage from "./pages/adsDetails";
 import ProfilePage from "./pages/profilePages";
 import EditProfile from "./pages/editProfile";
 import MyAds from "./pages/postedAds";
+import AdsList from "./pages/adsListOthers";
 function App() {
   return (
     <>
@@ -23,7 +24,7 @@ function App() {
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/edit" element={<ProtectedRoute><EditProfile /></ProtectedRoute>} />
           <Route path="/myads" element={<ProtectedRoute><MyAds /></ProtectedRoute>} />
-
+          <Route path="/adslist" element={<ProtectedRoute><AdsList/></ProtectedRoute>}/>
         </Routes>
       </Router>
     </>

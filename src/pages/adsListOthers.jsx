@@ -2,53 +2,63 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { baseURL } from "../../api_services/baseURL";
 
-function MyAds() {
+function AdsList() {
     const [ads, setAds] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
 
     useEffect(() => {
-        fetchUserAds();
+        fetchAllAds();
     }, []);
 
-    const fetchUserAds = async () => {
+    const fetchAllAds = async () => {
         try {
+            if (!userCredentials) {
+                setError("User  credentials not found in local storage");
+                setLoading(false);
+                return;
+            }
+
             const reqHeader = {
                 "Authorization": `${userCredentials.token}`
             };
 
-            const response = await axios.get(`${baseURL}/adFetch/${userCredentials.user_id}`, { headers: reqHeader });
+            const response = await axios.get(`${baseURL}/adFetchAll`, { headers: reqHeader });
 
             if (response.data && Array.isArray(response.data)) {
-                setAds(response.data);
+                const filteredAds = response.data.filter(ad => ad.user_id !== userCredentials.user_id);
+                setAds(filteredAds);
             } else {
-                console.error("Invalid API response format", response.data);
+                setError("Invalid API response format");
             }
         } catch (error) {
-            console.error("Error fetching ads:", error);
+            setError("Error fetching ads: " + error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
-    useEffect(() => {
-        console.log(ads);
-
-    }, [ads])
-
     return (
         <div className="container mt-4">
-            <h2>My Posted Ads</h2>
-            {ads.length === 0 ? (
-                <p>No ads posted yet.</p>
+            <h2>Other Users Ads</h2>
+            {loading ? (
+                <p>Loading...</p>
+            ) : error ? (
+                <p>{error}</p>
+            ) : ads.length === 0 ? (
+                <p>No ads available.</p>
             ) : (
                 <div className="row">
                     {ads.map((ad) => (
                         <div key={ad._id} className="col-md-4 mb-4">
                             <div className="card">
                                 {ad.imgPath && ad.imgPath.length > 0 ? (
-                                    <div className="" style={{ height: "200px", width: "200px" }}>
+                                    <div style={{ height: "200px", width: "200px" }}>
                                         <img
                                             src={`${baseURL}${ad.imgPath[0]}`}
                                             className="card-img-top"
-                                            alt="abcd"
+                                            alt="Ad Image"
                                             style={{ height: "100%", width: "100%", objectFit: "contain" }}
                                         />
                                     </div>
@@ -70,7 +80,6 @@ function MyAds() {
                                     <p className="card-text"><strong>Price:</strong> ₹{ad.price}</p>
                                     <p className="card-text"><strong>Description:</strong> {ad.description}</p>
                                     <p className="card-text"><strong>Location:</strong> {ad.location}</p>
-                                    {/* <button className="btn btn-primary" onClick={() => navigate(`/myads/${ad._id}`)}>View Details</button> */}
                                 </div>
                             </div>
                         </div>
@@ -81,4 +90,4 @@ function MyAds() {
     );
 }
 
-export default MyAds;
+export default AdsList;

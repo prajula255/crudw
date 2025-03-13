@@ -70,6 +70,7 @@ function NavEx() {
                             <NavDropdown.Item as={Link} to="/profile" >View and Edit profile</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/ads">Ads</NavDropdown.Item>
                             <NavDropdown.Item as={Link} to="/myads">Posted Ads</NavDropdown.Item>
+                            <NavDropdown.Item as={Link} to="/adsList">AdsList</NavDropdown.Item>
                             <NavDropdown.Item href="#settings">Settings</NavDropdown.Item>
                             <NavDropdown.Item href="#help">Help</NavDropdown.Item>
                             <NavDropdown.Divider />
