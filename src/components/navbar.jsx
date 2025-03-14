@@ -7,6 +7,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 
 function NavEx() {
+
     return (
         <Navbar expand="lg" className="bg-primary-subtle">
             <Container fluid>
@@ -74,11 +75,10 @@ function NavEx() {
                             <NavDropdown.Item href="#settings">Settings</NavDropdown.Item>
                             <NavDropdown.Item href="#help">Help</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
                         </NavDropdown>
                     </Nav>
                     <Nav className='ms-auto'>
-                        <Nav.Link href="#action1">Sell</Nav.Link>
+                        <Nav.Link href="#logout">Logout</Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
