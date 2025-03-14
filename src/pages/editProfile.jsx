@@ -195,18 +195,17 @@ function EditProfilePage() {
     const navigate = useNavigate();
     const [userDetails, setUserDetails] = useState({});
     const [updatedValues, setUpdatedValues] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        dp: [],
+        name: userDetails?.name || "",
+        email: userDetails?.email || "",
+        phone: userDetails?.phone || "",
+        dp: userDetails?.profileImg?.length > 0 ? userDetails.profileImg : [],
     });
-
-    useEffect(() => {
-        console.log("current url: ", updatedValues?.dp);
-    }, [updatedValues])
-
     const userCredentials = JSON.parse(localStorage.getItem("userCredentials"));
     const userId = userCredentials?.user_id;
+
+    useEffect(() => {
+        console.log("current url: ", updatedValues.dp);
+    }, [updatedValues])
 
     // Fetch user details
     useEffect(() => {
@@ -230,8 +229,8 @@ function EditProfilePage() {
             setUpdatedValues({
                 name: userDetails?.name || "",
                 email: userDetails?.email || "",
-                phone: userDetails?.mobile || "",
-                dp: userDetails?.dp?.length > 0 ? userDetails.dp : [],
+                phone: userDetails?.phone || "",
+                dp: userDetails?.profileImg?.length > 0 ? userDetails.profileImg : [],
             });
         }
     }, [userDetails]);
@@ -282,7 +281,7 @@ function EditProfilePage() {
     };
 
     const isObject = (value) => {
-        return typeof value === 'object' && value !== null && !Array.isArray(value);
+        return value !== null && typeof value === 'object' && !Array.isArray(value);
     }
 
     return (
@@ -310,23 +309,23 @@ function EditProfilePage() {
                                         <div className="position-relative p-1" style={{ height: "200px", width: "200px" }}>
                                             <div className="border border-2 border-secondary bg-secondary-subtle" style={{ borderRadius: "6rem", height: "200px", width: "200px", overflowX: "hidden" }}>
                                                 {
-                                                    userDetails?.profileImg?.length === 0 ? 
+                                                    userDetails?.profileImg?.length === 0 ?
                                                         <div style={{ height: "100%", width: "100%" }}>
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-6">
                                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                                                             </svg>
                                                         </div>
-                                                    : 
-                                                    (
-                                                        isObject(updatedValues?.dp[0]) ?
-                                                            updatedValues?.dp?.map((item, index) => (
-                                                                <img key={index} src={item.url} alt="Profile" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
-                                                            ))
-                                                            :
-                                                            updatedValues?.dp?.map((item, index) => (
-                                                                <img key={index} src={`${baseURL}${item}`} alt="Profile" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
-                                                            ))
-                                                    )
+                                                        :
+                                                        (
+                                                            isObject(updatedValues?.dp[0]) ?
+                                                                updatedValues?.dp?.map((item, index) => (
+                                                                    <img key={index} src={item.url} alt="Profile" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
+                                                                ))
+                                                                :
+                                                                updatedValues?.dp?.map((item, index) => (
+                                                                    <img key={index} src={`${baseURL}${item}`} alt="Profile" style={{ height: "100%", width: "100%", objectFit: "contain" }} />
+                                                                ))
+                                                        )
                                                 }
                                             </div>
 

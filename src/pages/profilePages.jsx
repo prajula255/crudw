@@ -29,8 +29,8 @@ function ProfilePage() {
                             <h2 className="fw-bold">My Profile</h2>
                             <div className="d-flex align-items-center mt-3">
                                 <div
-                                    className="bg-secondary p-4 rounded-circle d-flex align-items-center justify-content-center"
-                                    style={{ width: "80px", height: "80px" }}
+                                    className="bg-secondary rounded-circle d-flex align-items-center justify-content-center"
+                                    style={{ width: "100px", height: "100px", overflow: "hidden" }}
                                 >
                                     {
                                         userDetails?.profileImg?.length > 0 ?
