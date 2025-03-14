@@ -139,7 +139,7 @@ function AdsList() {
             {loading ? (
                 <div className="loading-container">
                     <div className="spinner-border text-primary" role="status">
-                        <span className="sr-only">Loading...</span>
+                        <span className="sr-only">Loading</span>
                     </div>
                 </div>
             ) : error ? (
